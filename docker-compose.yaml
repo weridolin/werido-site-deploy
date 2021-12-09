@@ -1,0 +1,69 @@
+version: "3"
+services:
+
+  sitedb:
+    container_name: site-database
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: blogDB
+      POSTGRES_PASSWORD: 359066432
+      POSTGRES_USER: werido
+      version: "v1"
+    image: postgres:12
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    volumes:
+      - /usr/site/data/pgdata:/var/lib/postgresql/data/pgdata
+
+  redis:
+    image: redis:latest
+    restart: "no"
+    container_name: redis-site
+    environment:
+      REDIS_PASSWORD: werido
+    ports:
+      - "6379:6379"
+    volumes:
+      - /usr/site/conf/redis.conf:/etc/redis/redis.conf
+      - /usr/site/data/redis:/data
+    command: redis-server /etc/redis/redis.conf --requirepass werido
+    # command: redis-server --requirepass werido
+    privileged: true
+
+  django:
+    container_name: site-backend
+    build: 
+      context: ../werido-site-backend
+      dockerfile: Dockerfile
+    command:       
+      - /bin/bash
+      - -c
+      - |
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - /pythons/blogNew/werido-site-backend/:/var/www/html/weridoBlog/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - sitedb
+      - redis
+      
+  front:
+    # 前端先打包
+    container_name: site-front
+    image: nginx
+    ports:
+    - 80:80
+    restart: unless-stopped
+    volumes:
+    - /pythons/blogNew/werido-site-front/dist/home:/usr/share/nginx/html/
+    - /pythons/blog/final/front/nginx:/etc/nginx/conf.d/ 
+    - /usr/site/logs/nginx/:/var/log/nginx/
+    depends_on:
+    - django
+
+volumes:
+  pgdata:
