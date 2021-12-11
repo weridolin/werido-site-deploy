@@ -33,6 +33,9 @@ services:
 
   django:
     container_name: site-backend
+    environment:
+      - POSTGRES_HOST
+      - POSTGRES_PORT
     build: 
       context: ../werido-site-backend
       dockerfile: Dockerfile
