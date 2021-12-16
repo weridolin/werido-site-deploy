@@ -36,6 +36,9 @@ services:
     environment:
       - POSTGRES_HOST
       - POSTGRES_PORT
+      - REDIS_PASSWORD
+      - REDIS_HOST
+      - REDIS_PORT
     build: 
       context: ../werido-site-backend
       dockerfile: Dockerfile
