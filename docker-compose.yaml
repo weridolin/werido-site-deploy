@@ -66,7 +66,8 @@ services:
     restart: unless-stopped
     volumes:
     - /pythons/blogNew/werido-site-front/dist/home:/usr/share/nginx/html/
-    - /pythons/blog/final/front/nginx:/etc/nginx/conf.d/ 
+    - /pythons/nginx/conf.d/:/etc/nginx/conf.d/ 
+    - /pythons/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
     - /usr/site/logs/nginx/:/var/log/nginx/
     depends_on:
     - django
