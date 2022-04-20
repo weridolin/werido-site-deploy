@@ -57,26 +57,26 @@ services:
       - sitedb
       - redis
   
-  celery:
-    image: celery-with-docker-compose:latest
-    # build: .
-    container_name: celery-backend
-    environment:
-      - POSTGRES_HOST
-      - POSTGRES_PORT
-      - REDIS_PASSWORD
-      - REDIS_HOST
-      - REDIS_PORT
-    command:       
-      - /bin/bash
-      - -c
-      - |
-        celery -A core worker -l info
-    volumes:
-      - /pythons/blogNew/werido-site-backend/:/deploy/app
-    depends_on:
-      - django  
-      - redis  
+  # celery:
+  #   image: celery-with-docker-compose:latest
+  #   # build: .
+  #   container_name: celery-backend
+  #   environment:
+  #     - POSTGRES_HOST
+  #     - POSTGRES_PORT
+  #     - REDIS_PASSWORD
+  #     - REDIS_HOST
+  #     - REDIS_PORT
+  #   command:       
+  #     - /bin/bash
+  #     - -c
+  #     - |
+  #       celery -A core worker -l info
+  #   volumes:
+  #     - /pythons/blogNew/werido-site-backend/:/deploy/app
+  #   depends_on:
+  #     - django  
+  #     - redis  
 
 
   front:
