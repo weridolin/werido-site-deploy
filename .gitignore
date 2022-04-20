@@ -129,3 +129,4 @@ dmypy.json
 
 # VSCODE
 /.history
+./nohup.out

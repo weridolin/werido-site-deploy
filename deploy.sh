@@ -1,4 +1,4 @@
-# echo "开始更新前端代码"
+# echo "开始更新前端代码" 因为服务器内存不足，打包会卡死，直接在GitHub action打包后再推送过去
 # rm -rf werido-site-front
 # git clone git@github.com:weridolin/werido-site-front.git
 # cd ../werido-site-front
