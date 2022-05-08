@@ -39,6 +39,7 @@ services:
       - REDIS_PASSWORD
       - REDIS_HOST
       - REDIS_PORT
+      - DEBUG
     build: 
       context: ../werido-site-backend
       dockerfile: Dockerfile
@@ -49,7 +50,7 @@ services:
         supervisord  -c celery.conf
         python manage.py makemigrations
         python manage.py migrate
-        gunicorn -c gunicorn.py core.asgi:application
+        python manage.py runserver 0.0.0.0:8000
     volumes:
       - /pythons/blogNew/werido-site-backend/:/var/www/html/weridoBlog/
     ports:
