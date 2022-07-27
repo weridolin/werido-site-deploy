@@ -89,7 +89,7 @@ services:
     - 80:80
     restart: unless-stopped
     volumes:
-    - /pythons/site-new/dist/home:/usr/share/nginx/html/
+    - /pythons/site-new/dist:/usr/share/nginx/html/
     - /pythons/nginx/conf.d/:/etc/nginx/conf.d/ 
     - /pythons/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
     - /usr/site/logs/nginx/:/var/log/nginx/
