@@ -55,6 +55,8 @@ services:
       - /pythons/blogNew/werido-site-backend/:/var/www/html/weridoBlog/
     ports:
       - "8000:8000"
+      - "465:465"
+      - "25:25"
     depends_on:
       - sitedb
       - redis
