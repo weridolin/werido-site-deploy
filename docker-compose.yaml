@@ -82,6 +82,16 @@ services:
   #     - django  
   #     - redis  
 
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 61613:61613
+    volumes:
+      - /usr/rabbitmq:/etc/rabbitmq/enabled_plugins
+
 
   front:
     # 前端先打包
