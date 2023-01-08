@@ -38,7 +38,6 @@ services:
       - REDIS_PASSWORD
       - REDIS_HOST
       - REDIS_PORT
-      - DEBUG
       - EMAIL_PWD
     build: 
       context: ../werido-site-backend
