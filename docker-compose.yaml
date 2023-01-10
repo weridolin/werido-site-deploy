@@ -22,7 +22,7 @@ services:
     environment:
       - REDIS_PASSWORD
     ports:
-      - "6379:6379"
+      - 6379:6379
     volumes:
       - /usr/site/conf/redis.conf:/etc/redis/redis.conf
       - /usr/site/data/redis:/data
@@ -53,9 +53,10 @@ services:
     volumes:
       - /pythons/blogNew/werido-site-backend/:/var/www/html/weridoBlog/
     ports:
-      - "8000:8000"
-      - "465:465"
-      - "25:25"
+      - 8000:8000
+      - 465:465
+      - 25:25
+      - 9001:9001
     depends_on:
       - sitedb
       - redis
